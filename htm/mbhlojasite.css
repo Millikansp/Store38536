@@ -1,0 +1,273 @@
+/* Reset */
+html{font-size: 16px;}
+body{font-family: "Helvetica Neue",Helvetica,Arial,Roboto,sans-serif;background-color:#f0eeec;margin:0;}
+header{background-color: #e5e5e5;max-width: 600px; margin:0 auto; padding-bottom: 10px;}
+footer,section{max-width: 600px; margin:0 auto;background-color: <tag-FCCSSColor8>;}
+#idTitTextoFC{font-size:1.5rem;font-weight:700;}
+
+*{box-sizing: border-box;}
+
+a{text-decoration: none;}
+
+li{
+  list-style: none;
+}
+
+button{
+  background-color: transparent;
+  border: 0;
+}
+
+img{
+  max-width: 100%;
+}
+
+img[data-src*="/lojas/"][src$="/images/loading.gif"]{max-width: 16px!important;}
+
+.text-center{
+  text-align: center;
+}
+
+.amp-main{
+  padding-top: 15px;
+  height: 100%;
+}
+
+.FCHome .amp-main, .HighlightsPage .amp-main{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Header - Sidebar */
+.container{
+  width: 100%;
+  padding-right:20px;
+  padding-left:20px;
+}
+
+.sidebar-mask{
+  background-color: rgba(0,0,0,.5);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  display: none;
+}
+
+.sidebar-container{
+  position: fixed;
+  max-height: 100vh;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  z-index: 9999;
+  width: 250px;
+  background-color: #efefef;
+  left: -250px;
+  top: 0;
+  padding-top: 10px;
+  padding-right: 10px;
+}
+
+.sidebar-open{
+  left: 0;
+  transition:all .3s ease-in-out;
+}
+
+.sidebar-close{
+  left: -250px;
+  transition: all .3s ease-out;
+}
+
+.sidebar-close-container{
+  text-align: right;
+}
+
+.amp-sidebar-btn-close{
+  position: relative;
+  right: 0;
+}
+
+amp-sidebar {
+  width: 250px;
+  padding-right: 10px;
+}
+.amp-sidebar-image {
+  line-height: 100px;
+  vertical-align:middle;
+}
+.amp-close-image {
+   top: 15px;
+   left: 215px;
+   cursor: pointer;
+}
+
+.amp-header-container{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.amp-header-logo, .amp-header-cart, .amp-sidebar-btn{
+  position: relative;
+}
+
+.amp-header-logo{
+  width: 180px;
+  height: 54px;
+}
+
+.amp-header-cart{
+  width: 25px;
+  height: 25px;
+}
+
+.amp-sidebar-btn{
+  width: 45px;
+  height: 45px;
+}
+
+.amp-search-container{
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 5px;
+  margin-top: 15px;
+}
+
+.amp-search-input{
+  width: 100%;
+  height:41px;
+  border: 1px solid #ddd; 
+  background-color: #fcfcfc;
+  padding-right: 50px;
+  padding-left: 10px;
+  font-size:1.2rem;
+}
+
+.amp-search-btn{
+  position:absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #ccc;
+  height: 41px;
+}
+
+.amp-search-btn svg{
+  fill: #fff;
+}
+
+.amp-cats{
+  background-color: #e8e8e8;
+}
+
+.amp-cats .amp-link-cats{
+  display: block;
+  padding: 25px 20px;
+  color: gray;
+  font-weight: bold;
+  text-transform:uppercase;
+}
+
+.CatContainerFC{
+  background-image: none !important;
+  margin-bottom: 10px;
+}
+
+.CatListFC{
+  padding-left: 20px;
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.Cat0FC{margin-bottom: 0;}
+
+.Cat0FC a{
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #585757;
+  display: block;
+  line-height: 29px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  vertical-align: middle;
+}
+.Cat0FC a:visited{
+  color: #585757;
+}
+
+.Cat1FC{
+  margin-bottom: 0;
+}
+
+.Cat1FC a{
+  color: #4a4949;
+  display: block;
+  line-height: 29px;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  vertical-align: middle;
+}
+
+.Cat1FC a:visited{
+  color: #4a4949;
+}
+
+.CatSeeMoreFC{
+  padding-left: 25px;
+}
+
+.CatSeeMoreFC a{
+  font-size: .9rem;
+  color:#0a0c7b;
+  display: block;
+  line-height: 29px;
+  padding-top: 5px;
+  padding-bottom: 10px;
+  vertical-align: middle;
+}
+
+.CatSeeMoreFC a:visited{
+  color:#0a0c7b;
+}
+
+.amp-nav{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+footer .amp-nav > a:nth-of-type(1){
+  border-top: 1px solid #ccc;
+}
+.amp-nav > a{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 15px 0;
+  border-bottom: 1px solid #ccc;
+  color:#0a0c7b;
+}
+
+.amp-nav > a:last-child{
+  border-bottom: 0;
+}
+
+.amp-nav a svg{
+  margin-right: 10px;
+  fill:#757576;
+}
+
+.amp-nav a:visited{
+  color:#0a0c7b;
+}
+
+/* Checkout */
+#FCCartButtons ul{display:flex;display:-webkit-flex;flex-direction:column;-webkit-flex-direction:column;}
+#FCCartButtons ul li:first-child{order:1;}
+#FCCartButtons ul li:nth-child(2){order:2;}
