@@ -307,7 +307,7 @@ var sF$=(function(){
   function fnMostraDescontoHome(PrecoProd){
     if(PrecoProd==0 || iDescontoAvista==0)return;
     document.write("<p class=PriceAVistaProdLista>à vista <b>"+FormatPrice(PrecoProd*((100-iDescontoAvista)/100),FC$.Currency)+"</b></p>");
-  }
+  }  
 
   function fnMostraDescontoProdLista(PrecoProd){
     if(PrecoProd==0 || iDescontoAvista==0)return;
@@ -325,7 +325,7 @@ var sF$=(function(){
     if(ReviewQtd>0){
       innerReview.innerHTML = "<table><tr><td>"+ReviewMedia+"</td><td></td></tr></table>";}else{innerReview.innerHTML="<table><tbody><tr><td><table cellspacing='0' cellpadding='0'><tbody><tr><td class='NotaOpiniaoVazio'></td><td class='NotaOpiniaoVazio'></td><td class='NotaOpiniaoVazio'></td><td class='NotaOpiniaoVazio'></td><td class='NotaOpiniaoVazio'></td></tr></tbody></table></td><td></td></tr></tbody></table>";
     }
-  }
+  }  
 
   return{
     sCurrentPage:sCurrentPage,
@@ -408,10 +408,35 @@ function ShowCartOnPage(IDLoja,iErr,sMsg,sCartText,sCheckoutText,este){
   setTimeout("if(iLastCartOnPage=="+ iLastCartOnPage +")oDivShowCartOnPage.style.visibility='hidden';",400000);
 }
 
+//Smart Suggestions
+function fnCallbackSuggestions(aTerms){
+  "use strict";
+  var iTerms=aTerms.length;
+  if(FC$.Page=="News"){
+    var sParamName="textobuscanews"
+    var sIDNotFound="idNotFoundNewsFC";
+  }
+  else{
+    var sParamName="texto"
+    var sIDNotFound="idTxtCatNotFoundFC";
+  }
+  var oNotFound=FCLib$.GetID(sIDNotFound);
+  if(oNotFound && iTerms>=1){
+    if(iTerms>10)iTerms=10;
+    var sTerms="<div id=GoogleTerms><ul>";
+    var sPlural=(iTerms>1)?"s":"";
+    sTerms+="<li><b>Busca"+ sPlural +" sugerida"+ sPlural +" pelo Google:</b></li>";
+    for(var i=0;i<iTerms;i++)sTerms+="<li><a href='"+ FCLib$.fnGetSearchURL(aTerms[i],sParamName) +"'>"+aTerms[i]+"</a></li>";
+    sTerms+="</ul></div>";
+    oNotFound.insertAdjacentHTML('afterend',sTerms);
+  }
+}
+
 // Funções executadas no rodapé
 function fnFooter(){
 
   FCLib$.onReady(sF$.fnCustomizeIconsSocialNetworks(false));
+  if(FC$.query!="")FCLib$.onReady(FCLib$.fnGetSuggestions(decodeURIComponent(FC$.query),true,fnCallbackSuggestions));
 
   if(FC$.Page=="Products"){
     if(iQtdProds>2){
