@@ -10,9 +10,6 @@ a,body{margin:0}article,aside,details,figcaption,figure,footer,header,hgroup,hr,
 #idCheckoutFC .BotChkPaymentContinue{border:none;padding:7px 15px;color:#fff;cursor:pointer;-webkit-border-radius:3px;min-height:47px;transition:background-color .5s background-color: #44ac55;font-size:14px}
 #idCheckoutFC .BotChkPaymentContinue:hover{border:none;padding:7px 15px;color:#fff;cursor:pointer;-webkit-border-radius:3px;min-height:47px;transition:background-color .5s background-color: #44ac55;font-size:14px}
 
-#idChkPaymentIntFC p{font-size:14px;padding:20px;font-family:'Roboto',tahoma,arial;line-height:18px;}
-#idTxtCEPFreightFC p{font-size:14px;padding:20px;font-family:'Roboto',tahoma,arial;line-height:18px;}
-
 /* Global */
 *, *:after, *:before{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing: border-box;}
 .row:before, .row:after{content:"";display:table;clear:both;}
