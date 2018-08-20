@@ -22,7 +22,7 @@
 #resultBase{width:320px;height:410px;color:#284283;font-family:'Caveat',cursive;font-size:24px;padding:20px 30px 20px 40px;line-height:32px;overflow:auto;display:none;}
 #btChangeList{display:none;}
 .checkedItem{text-decoration:line-through;text-decoration-color:#999}
-.List-Controls {width: 540px; margin:0 auto;display: flex; display: -ms-flexbox; display: -webkit-flex; justify-content: center; -ms-justify-content:center; -webkit-justify-content:center;}
+.List-Controls {width: 540px; margin:0 auto 10px;display: flex; display: -ms-flexbox; display: -webkit-flex; justify-content: center; -ms-justify-content:center; -webkit-justify-content:center;}
 .List-Controls button {display: flex;align-items: center;flex-direction:column;padding-bottom: 5px; opacity: 1; outline-color:#01579B;border:0px; border-radius: 3px; cursor: pointer; background:#01579B; font-size: 11px; text-transform: uppercase; font-weight: bold; margin-right: 5px; min-height: 40px; color: #fff; transition: 0.3s; width: 50%;}
 .List-Controls button:hover {opacity: 0.8; border: 0; box-shadow: 0 4px 10px #a2a2a2; transition: 0.3s;}
 .List-Controls svg {width: 23px; height: 23px; min-width: 23px;min-height: 23px; }
@@ -38,7 +38,7 @@
 .bulletTopic {border:2px solid #284283;border-radius: 50%;margin-right: 5px;width: 30px;height: 30px;display: flex;align-items: center;justify-content:center;}
 .FctipTitle {margin-bottom:15px;}
 .FctipTopic p{font-weight:bold;}
-.tipTxt {color:#757575;font-size:14px;padding-left:35px;line-height:1.4;}
+.tipTxt {color:#757575;font-size:13px;padding-left:35px;line-height:1.4;}
 ul.tipInst {margin:0;}
 ul.tipInst li {display:flex;align-items:center;margin-bottom:0px;margin-top:7px;margin-left:3px;font-size:12px;color:#757575;padding-left:35px;}
 li.tipInstHead{padding:0 0 10px;}
@@ -96,8 +96,9 @@ ul.tipInst li:last-child {margin-bottom:20px;}
   <div class=List-Controls>
     <button id=btProductSplit onclick="productList$.productSplit()" disabled><img64 src="/icons/GoogleV1/svg/ic_search_24px.svg" plain="true" alt="Buscar">Buscar produtos</button>
     <button id=btChangeList onclick="productList$.changeList()"><img src="<PathTo file="images/edit-text.svg">" width=20px height=20px alt="Alterar">Alterar lista</button>
-    <button id=btNewList onclick="productList$.newList()" disabled><img64 src="/icons/GoogleV1/svg/ic_playlist_add_24px.svg" plain="true" alt="Recomeçar">Recomeçar</button>
+    <button id=btNewList onclick="productList$.newList()" disabled><img64 src="/icons/GoogleV1/svg/ic_playlist_add_24px.svg" plain="true" alt="Nova lista">Recomeçar</button>
   </div>
+
 
 
 <script>
@@ -164,7 +165,7 @@ var productList$=(function(){
       for(var i=0;i<iLista;i++){
         sItem=aLista[i];
         sClassRiscado=(oListaRiscados[sItem])?" class=checkedItem":"";
-        sBuf+="<div id=resultLine"+ i +" class=result><a title=\"Buscar "+ sItem +"\" data-rel='lightcase:myCollection' href='/listaprodutos.asp?idloja=<IDLoja>&int=1&sty=8&digitada=1&texto="+ escape(sItem) +"'>";
+        sBuf+="<div id=resultLine"+ i +" class=result><a onclick=bCascate=true;FCLib$.OpenRWD('/listaprodutos.asp?idloja=<IDLoja>&sty=8&int=1&digitada=1&texto="+ escape(sItem) +"','Disp','width=700,height=700') href=#Spy rel='nofollow' title=\"Resultado: "+ sItem +"\">";
         sBuf+="<span id=itemName"+ i + sClassRiscado +">"+ sItem +"</span>";
         sBuf+=sIconSearch +"</a>";
         sBuf+="<a href=#na title=Verificado onclick=productList$.checkItem("+ i +")>"+ sIconCheck +"</a>";
@@ -176,9 +177,6 @@ var productList$=(function(){
       oResultBase.style.display='block';
       oBtChangeList.style.display='inline-flex';
       oResultBase.innerHTML=sBuf;
-      jQuery(document).ready(function($){
-        $('a[data-rel^=lightcase]').lightcase();
-      });
     }
     bEditMode=(iLista==0);
     changeEditMode(bEditMode);
