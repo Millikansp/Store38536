@@ -165,7 +165,7 @@ var productList$=(function(){
       for(var i=0;i<iLista;i++){
         sItem=aLista[i];
         sClassRiscado=(oListaRiscados[sItem])?" class=checkedItem":"";
-        sBuf+="<div id=resultLine"+ i +" class=result><a onclick=bCascate=true;FCLib$.OpenRWD('/listaprodutos.asp?idloja=<IDLoja>&sty=8&int=1&digitada=1&texto="+ escape(sItem) +"','Disp','width=700,height=700') href=#Spy rel='nofollow' title=\"Resultado: "+ sItem +"\">";
+        sBuf+="<div id=resultLine"+ i +" class=result><a onclick=bCascate=true;FCLib$.OpenRWD('<url-prod>?sty=8&int=1&<par-typed>=1&<par-text>="+ escape(sItem) +"','Disp','width=700,height=700') href=#Spy rel='nofollow' title=\"Resultado: "+ sItem +"\">";
         sBuf+="<span id=itemName"+ i + sClassRiscado +">"+ sItem +"</span>";
         sBuf+=sIconSearch +"</a>";
         sBuf+="<a href=#na title=Verificado onclick=productList$.checkItem("+ i +")>"+ sIconCheck +"</a>";
