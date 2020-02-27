@@ -98,6 +98,21 @@ var bT$=(function(){
     }
   }
 
+  function charCode(obj){
+    return obj.replace(/&amp;/g, '&#38;').replace(/&lt;/g, '&#60;').replace(/&gt;/g, '&#62;').replace(/&#(\d+);/g, function (m, n) { return String.fromCharCode(n); }); //& < >
+  }
+
+  function fnCleanCodeAdic(oProd){
+    oProd.Adicional1=charCode(oProd.Adicional1);
+    oProd.Adicional2=charCode(oProd.Adicional2);
+    oProd.Adicional3=charCode(oProd.Adicional3);
+    oProd.AdicionalD1=charCode(oProd.AdicionalD1);
+    oProd.AdicionalD2=charCode(oProd.AdicionalD2);
+    oProd.AdicionalD3=charCode(oProd.AdicionalD3);
+    oProd.Cor=charCode(oProd.Cor);
+    return oProd;
+  }
+
   function fnComprar(Obj){
     var aProdsComprar=[];
     if(typeof(aProds)=="object" && aProds.constructor==Array && aProds.length>0){
@@ -105,7 +120,7 @@ var bT$=(function(){
         var oProd=aProds[i];
         var bChecked=document.getElementById("CB"+oProd.id).checked;
         if(bChecked){
-          aProdsComprar[aProdsComprar.length]=oProd;
+          aProdsComprar[aProdsComprar.length]=fnCleanCodeAdic(oProd);
         }
       }
       FCLib$.aBuyTogether=aProdsComprar;
@@ -126,7 +141,7 @@ var bT$=(function(){
       for(var i=0;i<aProds.length;i++){
         var oProd=aProds[i];
         if(oProd.id==id || oProd.id==IDProdPrincCJ){
-          aProdsComprar[aProdsComprar.length]=oProd;
+          aProdsComprar[aProdsComprar.length]=fnCleanCodeAdic(oProd);
         }
       }
       FCLib$.aBuyTogether=aProdsComprar;

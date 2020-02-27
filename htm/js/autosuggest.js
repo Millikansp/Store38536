@@ -3,7 +3,7 @@ var g1='5'; //Quantidade de itens do grupo g1(Termos), Padrão 5, Máximo 9, 0 Não
 var g2='5'; //Quantidade de itens do grupo g2(Páginas), Padrão 3, Máximo 9, 0 Não exibe
 var g3='5'; //Quantidade de itens do grupo g3(Produtos), Padrão 5, Máximo 9, 0 Não exibe
 var g4='5'; //Quantidade de itens do grupo g4(Notícias), Padrão 3, Máximo 9, 0 Não exibe
-
+var GoogleMaxTerms=0; //Quantidade máxima de termos sugeridos do Google. 0 Não exibe
 var aGoogleTerms;
 
 function getGoogleTerms(sTerm){
@@ -21,7 +21,7 @@ function injectGoogleTerms(oSuggest,aTerms){
   "use strict";
   var iTerms=aTerms.length;
   if(iTerms>0){
-    if(iTerms>5)iTerms=5;
+    if(iTerms>GoogleMaxTerms)iTerms=GoogleMaxTerms;
     if(!oSuggest["SearchTerms"])oSuggest["SearchTerms"]=[];
     var iExistentes=oSuggest["SearchTerms"].length,aExistentes=[];
     for(var i=0;i<iExistentes;i++)aExistentes[oSuggest.SearchTerms[i].label]=true;
@@ -31,7 +31,7 @@ function injectGoogleTerms(oSuggest,aTerms){
 
 jQuery.noConflict();
 jQuery(function (jQuery) {
-                  
+
 jQuery.widget( "custom.autocomplete", jQuery.ui.autocomplete, {
     _renderMenu: function( ul, items ) {
         var self = this,
@@ -54,7 +54,7 @@ jQuery("#autocomplete").autocomplete({
     }
     if (ui.item.c){
       var idProducts = ui.item.id;
-      window.location.href = "/prod,idloja,"+FC$.IDLoja+",idproduto,"+idProducts;
+      window.location.href = "/prod,"+ (FCLib$.fnUseEHC()?"productid":"idproduto") +","+idProducts;
       return false;           
     }
     if (ui.item.u){
@@ -63,7 +63,7 @@ jQuery("#autocomplete").autocomplete({
     }
     if(ui.item.s){
       var idNews = ui.item.id;
-      window.location.href = "/news,idloja,"+FC$.IDLoja+",idnoticia,"+idNews;
+      window.location.href = "/news,"+ (FCLib$.fnUseEHC()?"newsid":"idnoticia") +","+idNews;
       return false;           
     }
   },
@@ -81,7 +81,7 @@ jQuery("#autocomplete").autocomplete({
   source: function (request, response) {
       getGoogleTerms(request.term);
       jQuery.ajax({
-          url: "/autosuggest.asp?idloja="+ FC$.IDLoja +"&format=1&q="+ request.term +"&g1="+g1+"&g2="+g2+"&g3="+g3+"&g4="+g4,
+          url: "/auto-suggest.ehc?format=1&q="+ request.term +"&g1="+g1+"&g2="+g2+"&g3="+g3+"&g4="+g4,
           dataType: "json",
           type: "GET",                     
           success: function (data) {
@@ -150,7 +150,7 @@ jQuery("#autocomplete").autocomplete({
 
   function successAjax(sTerm,data,response,iGoogleWait){
     if(!FCLib$.bDoneSuggestions && iGoogleWait<5){setTimeout(function(){successAjax(sTerm,data,response,++iGoogleWait);},100);return void(0);}
-    injectGoogleTerms(data,aGoogleTerms);
+    if(GoogleMaxTerms>0)injectGoogleTerms(data,aGoogleTerms);
     var json0 = data.SearchTerms;
     var json1 = data.Products;
     var json2 = data.RelatedPages;
